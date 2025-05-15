@@ -83,19 +83,13 @@ function renderImage(dateStr) {
 
 function renderPrompt(art) {
   if (!art || !art.フォーマット) return "";
-  const fmt = art.フォーマット;
+  const nyamlText = jsyaml.dump({ おえかき: art }, { allowUnicode: true, sortKeys: false });
 
-  const lines = [
-    "A cute illustration of a black cat",
-    fmt.デフォルメ === "あり" ? "fully stylized in chibi style" :
-    fmt.デフォルメ === "ちょっとだけ" ? "slightly deformed, semi-realistic style" :
-    "drawn realistically",
-    `with ${fmt.色設定?.毛色 || "black"} fur and ${fmt.色設定?.めの色 || "yellow"} eyes.`,
-    `The cat has a ${fmt.形設定?.尻尾 || "normal"} tail and a ${fmt.形設定?.体型 || "standard"} body.`,
-    `It is ${fmt.ポーズ設定?.姿勢 || "sitting"}, looking ${fmt.ポーズ設定?.向き || "forward"},`,
-    `with an expression of ${fmt.ポーズ設定?.表情 || "neutral"}.`,
-    `The background is ${fmt.背景設定?.場所 || "a room"} during ${fmt.背景設定?.時間帯 || "daytime"}.`
-  ];
-
-  return `<details><summary>🎨 絵の生成プロンプトを表示</summary><pre>${lines.join(" ")}</pre></details>`;
+  return `
+    <details>
+      <summary>📝 NYAML形式でおえかきプロンプト表示</summary>
+      <pre>${nyamlText}</pre>
+    </details>
+  `;
 }
+
