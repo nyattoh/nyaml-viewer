@@ -1,0 +1,26 @@
+body {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  background-color: #fffaf5;
+  color: #333;
+  padding: 2em;
+}
+h1 {
+  font-size: 1.8em;
+  margin-bottom: 1em;
+}
+#viewer {
+  margin-top: 2em;
+}
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1em;
+  background: #fff;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 2em;
+}
+.card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 1em;
+}
