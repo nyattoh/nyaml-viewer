@@ -22,7 +22,9 @@ function renderDiary(data) {
   const card = document.createElement("div");
   card.className = "card";
 
-  const date = data.にっきび || data?.おえかき?.にっきび || "（日付なし）";
+  const date = typeof data.にっきび === "string"
+    ? data.にっきび
+    : data?.おえかき?.にっきび || "（日付なし）";
   const mood = data.きょうのきぶん || "？";
   const name = data.にゃまえ || "ななし猫";
 
@@ -63,7 +65,8 @@ function renderActivities(obj) {
 }
 
 function renderImage(dateStr) {
-  const imagePath = `sample/images/${dateStr}.png`;
+  const safeDate = dateStr.replace(/[^0-9a-zA-Z_-]/g, "-"); // スラッシュやスペース対策
+  const imagePath = `sample/images/${safeDate}.png`;
   return `<img src="${imagePath}" alt="絵日記イメージ" onerror="this.style.display='none';" />`;
 }
 
