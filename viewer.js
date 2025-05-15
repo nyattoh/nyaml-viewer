@@ -15,6 +15,16 @@ document.getElementById('fileInput').addEventListener('change', function (e) {
   reader.readAsText(file);
 });
 
+function formatDateToYMD(dateStr) {
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return "invalid-date";
+
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, '0');
+  const dd = String(date.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+}
+
 function renderDiary(data) {
   const container = document.getElementById("viewer");
   container.innerHTML = "";
@@ -65,7 +75,7 @@ function renderActivities(obj) {
 }
 
 function renderImage(dateStr) {
-  const safeDate = String(dateStr).replace(/[^0-9a-zA-Z_-]/g, "-");
+  const safeDate = formatDateToYMD(dateStr);
   const imagePath = `sample/images/${safeDate}.png`;
   return `<img src="${imagePath}" alt="絵日記イメージ" onerror="this.style.display='none';" />`;
 }
