@@ -65,10 +65,11 @@ function renderActivities(obj) {
 }
 
 function renderImage(dateStr) {
-  const safeDate = dateStr.replace(/[^0-9a-zA-Z_-]/g, "-"); // スラッシュやスペース対策
+  const safeDate = String(dateStr).replace(/[^0-9a-zA-Z_-]/g, "-");
   const imagePath = `sample/images/${safeDate}.png`;
   return `<img src="${imagePath}" alt="絵日記イメージ" onerror="this.style.display='none';" />`;
 }
+
 
 function renderPrompt(art) {
   if (!art || !art.フォーマット) return "";
